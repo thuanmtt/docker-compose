@@ -5,9 +5,7 @@ services:
     environment:
       ZOOKEEPER_CLIENT_PORT: 2181
       ZOOKEEPER_TICK_TIME: 2000
-    volumes:
-      - ./zookeeper-data:/var/lib/zookeeper/data
-      - ./zookeeper-logs:/var/lib/zookeeper/log
+    restart: unless-stopped
 
   kafka:
     image: confluentinc/cp-kafka:latest
@@ -22,8 +20,8 @@ services:
       KAFKA_LISTENER_SECURITY_PROTOCOL_MAP: PLAINTEXT:PLAINTEXT,PLAINTEXT_HOST:PLAINTEXT
       KAFKA_INTER_BROKER_LISTENER_NAME: PLAINTEXT
       KAFKA_OFFSETS_TOPIC_REPLICATION_FACTOR: 1
-    volumes:
-      - ./kafka-data:/var/lib/kafka/data
+    restart: unless-stopped
+
 
   kafka-ui:
     image: 'provectuslabs/kafka-ui:latest'
@@ -37,3 +35,4 @@ services:
     depends_on:
       - kafka
       - zookeeper
+    restart: unless-stopped

@@ -6,6 +6,7 @@ version: '2'
 services:
   redis:
     image: docker.io/bitnami/redis:7.0
+    container_name: redis
     environment:
       # ALLOW_EMPTY_PASSWORD is recommended only for development.
       - ALLOW_EMPTY_PASSWORD=yes
@@ -14,6 +15,7 @@ services:
       - '6379:6379'
     volumes:
       - 'redis_data:/bitnami/redis/data'
+    restart: unless-stopped
 
 volumes:
   redis_data:
