@@ -1,0 +1,12 @@
+version: '3'
+services:
+  ubuntu-container:
+    image: ubuntu
+    container_name: my-ubuntu-container
+    command: >
+      bash -c "
+        apt-get update &&
+        apt-get install -y python3 &&
+        tail -f /dev/null"
+    volumes:
+      - /Users/thuanmt/code:/code
