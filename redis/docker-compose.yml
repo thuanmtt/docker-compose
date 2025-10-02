@@ -26,3 +26,14 @@ services:
     - REDIS_HOSTS=local:redis:6379
     ports:
     - "8081:8081"
+    
+  redis-insight:
+    image: redis/redisinsight:latest
+    restart: always
+    ports:
+      - "5540:5540"
+    volumes:
+      - redis-insight:/data
+
+volumes:
+  redis-insight:
